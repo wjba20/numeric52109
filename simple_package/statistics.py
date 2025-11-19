@@ -23,52 +23,41 @@
 ##    numpy and matplotlib packages are not installed.
 ##
 
-## Functions for basic statistical operations:
 try:
     import numpy as np
 except ImportError:
-    raise ImportError("Error: numpy is required for statistics.py but is not installed.")
+    raise ImportError("NumPy is required for statistics.py, but it is not installed.")
 
-
-def validate_input(data):
-    """
-    Ensure the input is a numpy array.
-    Convert Python lists to numpy arrays.
-    Raise an error for invalid types.
-    """
+def ensure_array(data):
+    """Ensure input is a NumPy array."""
     if isinstance(data, list):
         return np.array(data)
-
-    if isinstance(data, np.ndarray):
+    elif isinstance(data, np.ndarray):
         return data
+    else:
+        raise TypeError("Input must be a list or numpy array.")
 
-    raise TypeError("Input data must be a list or numpy array.")
 
-
-def calculate_stats(data):
-    """
-    Calculate the mean, median, and standard deviation of a dataset.
-    Returns a dictionary of results.
-    """
-    data = validate_input(data)
+def compute_statistics(data):
+    """Return mean, median, std for given data."""
+    data = ensure_array(data)
 
     mean = np.mean(data)
     median = np.median(data)
     std = np.std(data)
 
-    return {
-        "mean": mean,
-        "median": median,
-        "std": std
-    }
+    print("\n=== Statistics Summary ===")
+    print(f"Mean:   {mean:.4f}")
+    print(f"Median: {median:.4f}")
+    print(f"Std:    {std:.4f}\n")
 
+    return mean, median, std
 
-def print_stats(stats):
-    """
-    Pretty-print the statistics dictionary.
-    """
-    print("=== Statistics Summary ===")
-    print(f"Mean:   {stats['mean']:.4f}")
-    print(f"Median: {stats['median']:.4f}")
-    print(f"Std:    {stats['std']:.4f}")
-    print("==========================")
+def plot_statistics(data):
+    """Plot histogram with mean and median using graphics.py."""
+    from . import graphics  # import from same package
+
+    data = ensure_array(data)
+    mean, median, std = compute_statistics(data)
+
+    graphics.plot_histogram(data, mean, median)
