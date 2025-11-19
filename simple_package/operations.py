@@ -40,3 +40,66 @@ def multiply(a, b):
 def divide(a, b):
     """Divide one number by another."""
     return a / b
+
+import math
+
+def calculator():
+    """
+    Interactive calculator interface.
+    Prompts the user for an operation until 'exit' is entered.
+    Handles errors efficiently.
+    """
+
+    print("Welcome to the simple_package calculator!")
+    print("Available operations: add, subtract, multiply, divide, sin, cos, log")
+    print("Type 'exit' to quit.\n")
+
+    while True:
+        op = input("Enter an operation: ").strip().lower()
+
+        if op == "exit":
+            print("Goodbye!")
+            break
+
+        if op in ["add", "subtract", "multiply", "divide"]:
+            try:
+                a = float(input("Enter first number: "))
+                b = float(input("Enter second number: "))
+
+                if op == "add":
+                    result = add(a, b)
+                elif op == "subtract":
+                    result = subtract(a, b)
+                elif op == "multiply":
+                    result = multiply(a, b)
+                elif op == "divide":
+                    result = divide(a, b)
+
+                print("Result:", result)
+
+            except Exception as e:
+                print("Error:", e)
+
+        elif op in ["sin", "cos", "tan", "log", "exp"]:
+            try:
+                x = float(input("Enter a number: "))
+
+                if op == "sin":
+                    result = math.sin(x)
+                elif op == "cos":
+                    result = math.cos(x)
+                elif op == "tan":
+                    result = math.tan(x)    
+                elif op == "log":
+                    result = math.log(x)
+                elif op == "exp":
+                    result = math.exp(x)    
+
+                print("Result:", result)
+
+            except Exception as e:
+                print("Error:", e)
+
+        else:
+            print("Unknown operation. Please try again.")
+
