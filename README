@@ -1,0 +1,17 @@
+###
+## MA52109 - Programming for Data Science
+##
+## Instructions for the pre-practical
+## November 2025
+##
+##
+## The module "simple_package" does not seem to
+## be working. I have created a "test_sp.py" Python
+## script to test the module, but it throws an
+## error.
+##
+## The first task for you is to fix the error in
+## "test_sp.py". Then carry on with how I would like
+## the package to be completed, following the instructions
+## within each internal file.
+###
